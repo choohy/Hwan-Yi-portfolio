@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Froggy Fun Factory</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #22C55E; --green-dark: #16A34A; --green-light: #DCFCE7;
+    --blue: #3B82F6; --blue-dark: #1D4ED8; --blue-light: #DBEAFE;
+    --pink: #EC4899; --pink-dark: #BE185D; --pink-light: #FCE7F3;
+    --dark: #0F2318; --light: #F0FDF4;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(34,197,94,0.12); }
+  .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; transition: color 0.3s; cursor: pointer; }
+  .nav-links a:hover { color: var(--green-dark); }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #F0FDF4 0%, #DBEAFE 50%, #FCE7F3 100%); text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; animation: float 6s ease-in-out infinite; }
+  .blob1 { width: 320px; height: 320px; background: var(--green); top: 5%; left: 5%; }
+  .blob2 { width: 260px; height: 260px; background: var(--pink); bottom: 8%; right: 5%; animation-delay: 2s; }
+  .blob3 { width: 220px; height: 220px; background: var(--blue); top: 50%; left: 55%; animation-delay: 4s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-22px)} }
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 1px; }
+  h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 0.4rem; }
+  .pronoun { font-size: 1rem; font-weight: 500; color: #6B7280; margin-bottom: 1rem; display: block; }
+  .gradient-text { background: linear-gradient(135deg, var(--green-dark), var(--blue), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-title { font-size: 1.05rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1rem; }
+  .hero-sub { font-size: 1rem; color: #4B5563; max-width: 640px; margin: 0 auto 2.5rem; line-height: 1.8; }
+  .btn { display: inline-block; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; box-shadow: 0 4px 20px rgba(34,197,94,0.35); margin-right: 1rem; }
+  .btn-outline { background: #fff; color: var(--green-dark); border: 2px solid var(--green); }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(34,197,94,0.4); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-tag { display: inline-block; background: linear-gradient(135deg, var(--green), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 1rem; }
+  .section-divider { width: 60px; height: 5px; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue), var(--pink)); margin-bottom: 3rem; }
+
+  /* ABOUT */
+  #about { background: #fff; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-img { width: 100%; aspect-ratio: 1; border-radius: 30px; background: linear-gradient(135deg, var(--green-light), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 7rem; box-shadow: 0 20px 60px rgba(34,197,94,0.2); }
+  .about-text p { color: #4B5563; line-height: 1.8; margin-bottom: 1rem; font-size: 1.05rem; }
+  .fun-facts { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .fact-chip { background: linear-gradient(135deg, var(--green-light), var(--blue-light)); border-radius: 50px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--green-dark); }
+
+  /* PROJECTS */
+  #projects { background: var(--light); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .project-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
+  .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(34,197,94,0.2); }
+  .project-thumb { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+  .thumb1 { background: linear-gradient(135deg, var(--green-light), var(--blue-light)); }
+  .thumb2 { background: linear-gradient(135deg, var(--blue-light), var(--pink-light)); }
+  .thumb3 { background: linear-gradient(135deg, var(--pink-light), var(--green-light)); }
+  .project-info { padding: 1.5rem; }
+  .project-info h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .project-info p { color: #6B7280; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
+  .tag { display: inline-block; background: var(--green-light); color: var(--green-dark); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-right: 0.3rem; margin-bottom: 0.3rem; }
+  .tag-blue { background: var(--blue-light); color: var(--blue-dark); }
+  .tag-pink { background: var(--pink-light); color: var(--pink-dark); }
+  .project-link { color: var(--pink); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+  .project-link:hover { text-decoration: underline; }
+
+  /* SKILLS */
+  #skills { background: #fff; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
+  .skill-card { background: var(--light); border-radius: 16px; padding: 1.5rem 1rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+  .skill-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(34,197,94,0.2); }
+  .skill-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .skill-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+  .skill-bar { height: 6px; background: #E5E7EB; border-radius: 10px; overflow: hidden; }
+  .skill-fill { height: 100%; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue)); }
+
+  /* RESOURCES */
+  #resources { background: linear-gradient(135deg, var(--green-light) 0%, var(--blue-light) 50%, var(--pink-light) 100%); }
+  .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .resource-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; gap: 0.5rem; }
+  .resource-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(34,197,94,0.2); }
+  .resource-header { display: flex; align-items: center; gap: 0.75rem; }
+  .resource-icon { font-size: 2rem; }
+  .resource-card h3 { font-size: 1rem; font-weight: 800; }
+  .resource-card p { color: #6B7280; font-size: 0.88rem; line-height: 1.6; }
+  .resource-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .resource-badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+  .badge-free { background: var(--green-light); color: var(--green-dark); }
+  .badge-community { background: var(--blue-light); color: var(--blue-dark); }
+  .badge-learning { background: var(--pink-light); color: var(--pink-dark); }
+  .resource-link { color: var(--pink); font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-top: auto; }
+  .resource-link:hover { text-decoration: underline; }
+
+  /* CONTACT */
+  #contact { background: #fff; }
+  .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-info h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
+  .contact-info p { color: #6B7280; line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--dark); font-weight: 600; padding: 0.75rem 1rem; border-radius: 12px; background: var(--light); transition: background 0.3s, color 0.3s; }
+  .contact-link:hover { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; }
+  .contact-link span:first-child { font-size: 1.3rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
+  .form-group input, .form-group textarea { padding: 0.85rem 1rem; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 0.95rem; font-family: inherit; transition: border-color 0.3s; outline: none; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--green); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .btn-submit { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border: none; padding: 0.9rem; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(34,197,94,0.4); }
+
+  footer { background: var(--dark); color: #fff; text-align: center; padding: 2rem; }
+  footer p { opacity: 0.7; font-size: 0.9rem; }
+  footer span { background: linear-gradient(135deg, var(--green), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+
+  @media (max-width: 768px) {
+    .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">🐸 Froggy Fun Factory</div>
+  <ul class="nav-links">
+    <li><a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a></li>
+    <li><a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a></li>
+    <li><a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</a></li>
+    <li><a onclick="document.getElementById('resources').scrollIntoView({behavior:'smooth'})">Resources</a></li>
+    <li><a onclick="document.getElementById('ai-resources').scrollIntoView({behavior:'smooth'})">AI Resources</a></li>
+    <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🐸 Welcome to Froggy Fun Factory</div>
+    <h1>Hi, I'm <span class="gradient-text">Hwan-Yi Choo</span></h1>
+    <span class="pronoun">she/her</span>
+    <p class="hero-title">Senior Learning Experience & Onboarding Strategist | Architecting Scalable Technical Capability Uplift</p>
+    <p class="hero-sub">Designing end-to-end learning journeys and self-service ecosystems to transform expert knowledge into high-impact training that enables talent to thrive in technical environments.</p>
+    <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See My Work</button>
+    <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">🐸</div>
+      <div class="about-text">
+        <p class="section-tag">About Me</p>
+        <h2>A little bit <span class="gradient-text">about me</span></h2>
+        <div class="section-divider"></div>
+        <p>Hey there! I'm Hwan-Yi — a learning experience strategist who's passionate about turning complex technical knowledge into clear, engaging, and scalable training experiences.</p>
+        <p>I specialise in onboarding design, self-service ecosystems, and building capability uplift programs that help people genuinely thrive in technical environments.</p>
+        <div class="fun-facts">
+          <span class="fact-chip">🐸 Frog enthusiast</span>
+          <span class="fact-chip">📐 Systems thinker</span>
+          <span class="fact-chip">🚀 Learning architect</span>
+          <span class="fact-chip">✨ Knowledge translator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-tag">My Work</p>
+    <h2>Featured <span class="gradient-text">Projects</span></h2>
+    <div class="section-divider"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-thumb thumb1">📊</div>
+        <div class="project-info">
+          <h3>Job Productivity Tracker</h3>
+          <p>An interactive tracker to help job seekers stay organised, monitor their progress, and boost productivity throughout the job hunt process.</p>
+          <div><span class="tag">Productivity</span><span class="tag tag-blue">Job Search</span><span class="tag tag-pink">Tool</span></div>
+          <a href="https://claude.ai/public/artifacts/7a8668ac-b4a0-4260-90df-d39a4e4e852c" target="_blank" class="project-link">View Project →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb thumb2">📚</div>
+        <div class="project-info">
+          <h3>Self-Service Learning Ecosystem</h3>
+          <p>Architected a scalable knowledge hub enabling teams to access training, documentation, and resources independently.</p>
+          <div><span class="tag tag-blue">Knowledge Management</span><span class="tag tag-pink">Self-Service</span></div>
+          <a href="#" class="project-link">View Project →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb thumb3">🎮</div>
+        <div class="project-info">
+          <h3>Technical Capability Uplift Program</h3>
+          <p><strong>Version 1 — Gamification of Learning:</strong> An interactive quiz-based experience that transforms technical skill building into an engaging, game-like journey for learners.</p>
+          <div><span class="tag tag-pink">Capability Building</span><span class="tag">Gamification</span><span class="tag tag-blue">Instructional Design</span></div>
+          <a href="https://skill-master-quiz.base44.app" target="_blank" class="project-link">View Project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-tag">What I Bring</p>
+    <h2>My <span class="gradient-text">Skills</span></h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">🗺️</div><h4>Learning Design</h4><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🚀</div><h4>Onboarding Strategy</h4><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">📐</div><h4>Systems Thinking</h4><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🧠</div><h4>Knowledge Management</h4><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><h4>Data & Analytics</h4><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">💬</div><h4>Stakeholder Comms</h4><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🛠️</div><h4>Instructional Design</h4><div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🤝</div><h4>Facilitation</h4><div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES & NETWORKS -->
+<section id="resources">
+  <div class="container">
+    <p class="section-tag">Useful Stuff</p>
+    <h2>Resources <span class="gradient-text">&amp; Networks</span></h2>
+    <div class="section-divider"></div>
+    <div class="resources-grid">
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">💛</span>
+          <div><h3>NFP Careers</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>Find volunteer and paid roles in the not-for-profit sector — connecting purpose-driven people with meaningful opportunities.</p>
+        <a href="https://www.nfpcareers.org/" target="_blank" class="resource-link">Visit NFP Careers →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🙌</span>
+          <div><h3>Volunteer.com.au</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>Australia's go-to platform for finding local volunteering opportunities across a wide range of causes and organisations.</p>
+        <a href="https://www.volunteer.com.au/" target="_blank" class="resource-link">Visit Volunteer.com.au →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🌱</span>
+          <div><h3>Go Volunteer</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>Browse hundreds of volunteer roles across Australia — from community support to events, conservation, and more.</p>
+        <a href="https://govolunteer.com.au/" target="_blank" class="resource-link">Visit Go Volunteer →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🤝</span>
+          <div><h3>Career Connect</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>A free community packed with resources, tips, and support to help you navigate your job hunt with confidence.</p>
+        <a href="https://www.skool.com/career-connecting-9447/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="resource-link">Join Community →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🤖</span>
+          <div><h3>Engineer Your Mission with AI Prompts</h3><div class="resource-badges"><span class="resource-badge badge-learning">Paid</span><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>Level up your AI prompting skills to supercharge your career strategy, job search, and professional growth.</p>
+        <a href="https://www.skool.com/engineeryourmission/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="resource-link">Explore Program →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🎓</span>
+          <div><h3>ATD (td.org)</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>The Association for Talent Development — a global hub for L&D professionals with resources, events, and certification pathways.</p>
+        <a href="https://td.org" target="_blank" class="resource-link">Visit ATD →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🛠️</span>
+          <div><h3>Notion</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
+        </div>
+        <p>Build self-service knowledge hubs, wikis, and onboarding portals with ease — a staple for learning ecosystem design.</p>
+        <a href="https://notion.so" target="_blank" class="resource-link">Visit Notion →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">📚</span>
+          <div><h3>LinkedIn Learning</h3><div class="resource-badges"><span class="resource-badge badge-learning">Learning</span></div></div>
+        </div>
+        <p>Thousands of courses in instructional design, leadership, and tech skills — great for ongoing professional development.</p>
+        <a href="https://linkedin.com/learning" target="_blank" class="resource-link">Visit LinkedIn Learning →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🌏</span>
+          <div><h3>GDG Melbourne</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>Google Developer Group Melbourne — a local community for developers, technologists, and curious minds to connect, learn, and grow together.</p>
+        <a href="https://gdg.community.dev/gdg-melbourne/" target="_blank" class="resource-link">Join GDG Melbourne →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">👩‍💻</span>
+          <div><h3>Women4STEM</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>An Australian community championing women in science, technology, engineering, and mathematics through connection, mentorship, and advocacy.</p>
+        <a href="https://women4stem.com.au/" target="_blank" class="resource-link">Visit Women4STEM →</a>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🎓</span>
+          <div><h3>U3A Australia</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
+        </div>
+        <p>Universities of the Third Age — volunteer-led community groups across Australia offering education, social activities, and connection for lifelong learners.</p>
+        <a href="https://u3aaustralia.org.au/" target="_blank" class="resource-link">Visit U3A Australia →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI RESOURCES -->
+<section id="ai-resources" style="background:#fff;">
+  <div class="container">
+    <p class="section-tag">Explore & Experiment</p>
+    <h2>AI Resources <span class="gradient-text">to Try</span></h2>
+    <div class="section-divider"></div>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🤖</span>
+          <div><h3>Claude (Anthropic)</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
+        </div>
+        <p>Quick to build AI-enabled websites. Guided step-by-step process with Artifacts — perfect for bringing ideas to life without coding experience.</p>
+        <a href="https://claude.ai/" target="_blank" class="resource-link">Try Claude →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">⚡</span>
+          <div><h3>Base44</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
+        </div>
+        <p>Quick and easy to build application prototypes — great for rapidly testing and validating ideas without deep technical knowledge.</p>
+        <a href="https://app.base44.com/" target="_blank" class="resource-link">Try Base44 →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🔗</span>
+          <div><h3>Kong</h3><div class="resource-badges"><span class="resource-badge badge-community">Platform</span></div></div>
+        </div>
+        <p>Connect AI to APIs with MCP (Model Context Protocol) — enabling powerful integrations between AI tools and your existing systems.</p>
+        <a href="https://konghq.com/company/why-kong" target="_blank" class="resource-link">Explore Kong →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-tag">Say Hello</p>
+    <h2>Get In <span class="gradient-text">Touch</span></h2>
+    <div class="section-divider"></div>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Let's connect! 🐸</h3>
+        <p>Have a project in mind, want to collaborate on something exciting, or just want to say hi? I'd love to hear from you!</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/chooh/" target="_blank" class="contact-link"><span>💼</span><span>linkedin.com/in/chooh</span></a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group"><label>Your Name</label><input id="form-name" type="text" placeholder="Jane Doe"></div>
+        <div class="form-group"><label>Email Address</label><input id="form-email" type="email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Message</label><textarea id="form-message" placeholder="Tell me about your idea..."></textarea></div>
+        <button class="btn-submit" onclick="sendEmail()">Send Message 🐸</button>
+        <div id="email-fallback" style="display:none; margin-top:1.5rem; background:var(--light); border-radius:16px; padding:1.25rem;">
+          <p style="font-weight:700; margin-bottom:0.75rem; color:var(--dark);">📬 If your mail client didn't open, copy the message below and paste it into your email app:</p>
+          <textarea id="fallback-text" readonly rows="8" style="width:100%; border:2px solid #E5E7EB; border-radius:10px; padding:0.75rem; font-family:inherit; font-size:0.85rem; resize:none; background:#fff;"></textarea>
+          <button id="copy-btn" onclick="copyFallback()" style="margin-top:0.75rem; background:linear-gradient(135deg,var(--green),var(--blue)); color:#fff; border:none; padding:0.7rem 1.5rem; border-radius:50px; font-weight:700; font-size:0.9rem; cursor:pointer;">Copy to Clipboard 📋</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with 💚 by <span>Hwan-Yi Choo</span> · Froggy Fun Factory · © 2026</p>
+</footer>
+
+<script>
+function sendEmail() {
+  const name = document.getElementById('form-name').value.trim();
+  const email = document.getElementById('form-email').value.trim();
+  const message = document.getElementById('form-message').value.trim();
+  if (!name || !email || !message) { alert('Please fill in all fields before sending! 🐸'); return; }
+  const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+  const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+  window.open('mailto:hwanyi.choo@gmail.com?subject=' + subject + '&body=' + body, '_self');
+  setTimeout(() => {
+    const fallback = document.getElementById('email-fallback');
+    const plain = 'To: hwanyi.choo@gmail.com\nSubject: Portfolio enquiry from ' + name + '\n\nName: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
+    document.getElementById('fallback-text').value = plain;
+    fallback.style.display = 'block';
+    fallback.scrollIntoView({ behavior: 'smooth' });
+  }, 1000);
+}
+function copyFallback() {
+  const txt = document.getElementById('fallback-text');
+  txt.select();
+  navigator.clipboard.writeText(txt.value).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied! ✅';
+    setTimeout(() => btn.textContent = 'Copy to Clipboard 📋', 2500);
+  });
+}
+</script>
+</body>
+</html>
