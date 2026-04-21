@@ -15,14 +15,12 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Segoe UI', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
 
-  /* NAV */
   nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(34,197,94,0.12); }
   .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .nav-links { display: flex; gap: 1.5rem; list-style: none; }
   .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; transition: color 0.3s; cursor: pointer; }
   .nav-links a:hover { color: var(--green-dark); }
 
-  /* HERO */
   #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #F0FDF4 0%, #DBEAFE 50%, #FCE7F3 100%); text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden; }
   .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; animation: float 6s ease-in-out infinite; }
   .blob1 { width: 320px; height: 320px; background: var(--green); top: 5%; left: 5%; }
@@ -41,14 +39,12 @@
   .btn-outline { background: #fff; color: var(--green-dark); border: 2px solid var(--green); }
   .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(34,197,94,0.4); }
 
-  /* SECTIONS */
   section { padding: 5rem 2rem; }
   .container { max-width: 1100px; margin: 0 auto; }
   .section-tag { display: inline-block; background: linear-gradient(135deg, var(--green), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
   h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 1rem; }
-  .section-divider { width: 60px; height: 5px; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue), var(--pink)); margin-bottom: 3rem; }
+  .section-divider { width: 60px; height: 5px; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue), var(--pink)); margin-bottom: 2rem; }
 
-  /* ABOUT */
   #about { background: #fff; }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .about-img { width: 100%; aspect-ratio: 1; border-radius: 30px; background: linear-gradient(135deg, var(--green-light), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 7rem; box-shadow: 0 20px 60px rgba(34,197,94,0.2); }
@@ -56,7 +52,6 @@
   .fun-facts { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
   .fact-chip { background: linear-gradient(135deg, var(--green-light), var(--blue-light)); border-radius: 50px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--green-dark); }
 
-  /* PROJECTS */
   #projects { background: var(--light); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
   .project-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
@@ -74,7 +69,6 @@
   .project-link { color: var(--pink); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
   .project-link:hover { text-decoration: underline; }
 
-  /* SKILLS */
   #skills { background: #fff; }
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
   .skill-card { background: var(--light); border-radius: 16px; padding: 1.5rem 1rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
@@ -86,22 +80,27 @@
 
   /* RESOURCES */
   #resources { background: linear-gradient(135deg, var(--green-light) 0%, var(--blue-light) 50%, var(--pink-light) 100%); }
+  .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-btn { padding: 0.45rem 1.1rem; border-radius: 50px; font-size: 0.82rem; font-weight: 700; border: 2px solid transparent; cursor: pointer; transition: all 0.2s; background: #fff; color: var(--dark); }
+  .filter-btn:hover { border-color: var(--green); color: var(--green-dark); }
+  .filter-btn.active { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border-color: transparent; }
   .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-  .resource-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; gap: 0.5rem; }
+  .resource-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s; display: flex; flex-direction: column; gap: 0.5rem; }
   .resource-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(34,197,94,0.2); }
+  .resource-card.hidden { display: none; }
   .resource-header { display: flex; align-items: center; gap: 0.75rem; }
   .resource-icon { font-size: 2rem; }
   .resource-card h3 { font-size: 1rem; font-weight: 800; }
   .resource-card p { color: #6B7280; font-size: 0.88rem; line-height: 1.6; }
-  .resource-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .resource-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.1rem; }
   .resource-badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
   .badge-free { background: var(--green-light); color: var(--green-dark); }
   .badge-community { background: var(--blue-light); color: var(--blue-dark); }
   .badge-learning { background: var(--pink-light); color: var(--pink-dark); }
+  .badge-paid { background: #FEF9C3; color: #92400E; }
   .resource-link { color: var(--pink); font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-top: auto; }
   .resource-link:hover { text-decoration: underline; }
 
-  /* CONTACT */
   #contact { background: #fff; }
   .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .contact-info h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
@@ -131,7 +130,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">🐸 Froggy Fun Factory</div>
   <ul class="nav-links">
@@ -144,7 +142,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="blob blob1"></div>
   <div class="blob blob2"></div>
@@ -160,7 +157,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
@@ -182,7 +178,6 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <p class="section-tag">My Work</p>
@@ -204,7 +199,7 @@
           <h3>Self-Service Learning Ecosystem</h3>
           <p>Architected a scalable knowledge hub enabling teams to access training, documentation, and resources independently.</p>
           <div><span class="tag tag-blue">Knowledge Management</span><span class="tag tag-pink">Self-Service</span></div>
-          <a href="#" class="project-link">View Project →</a>
+          <a href="https://lumi-growth-hub.base44.app" target="_blank" class="project-link">View Project →</a>
         </div>
       </div>
       <div class="project-card">
@@ -220,7 +215,6 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="container">
     <p class="section-tag">What I Bring</p>
@@ -245,9 +239,55 @@
     <p class="section-tag">Useful Stuff</p>
     <h2>Resources <span class="gradient-text">&amp; Networks</span></h2>
     <div class="section-divider"></div>
-    <div class="resources-grid">
 
-      <div class="resource-card">
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
+      <button class="filter-btn" onclick="filterCards('free', this)">Free</button>
+      <button class="filter-btn" onclick="filterCards('network', this)">Network</button>
+      <button class="filter-btn" onclick="filterCards('learning', this)">Learning</button>
+      <button class="filter-btn" onclick="filterCards('paid', this)">Paid</button>
+    </div>
+
+    <div class="resources-grid" id="resources-grid">
+
+      <div class="resource-card" data-labels="free learning">
+        <div class="resource-header">
+          <span class="resource-icon">🌐</span>
+          <div><h3>GitHub Pages Quickstart</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-learning">Learning</span></div></div>
+        </div>
+        <p>Publish your own website for free with GitHub Pages. Step-by-step guide to get your site live at username.github.io — no hosting fees required.</p>
+        <a href="https://docs.github.com/en/pages/quickstart" target="_blank" class="resource-link">Read the Guide →</a>
+      </div>
+
+      <div class="resource-card" data-labels="paid">
+        <div class="resource-header">
+          <span class="resource-icon">🔍</span>
+          <div><h3>Calibration Gap Report</h3><div class="resource-badges"><span class="resource-badge badge-paid">Paid</span></div></div>
+        </div>
+        <p>AI-powered analysis that scans your website in 90 seconds to identify revenue leaks, time inefficiencies, and delivers a redesigned site — all personalised to you.</p>
+        <a href="https://aistrategist.com/calibration-gap/" target="_blank" class="resource-link">Check Your Gap →</a>
+      </div>
+
+      <div class="resource-card" data-labels="learning paid">
+        <div class="resource-header">
+          <span class="resource-icon">🚀</span>
+          <div><h3>Promotable You</h3><div class="resource-badges"><span class="resource-badge badge-paid">Paid</span><span class="resource-badge badge-learning">Learning</span></div></div>
+        </div>
+        <p>Career and leadership coaching programs for women ready to 10x their career. Find your dream job, build inner confidence, and claim your seat at the leadership table.</p>
+        <a href="https://www.promotableyou.com/" target="_blank" class="resource-link">Explore Promotable You →</a>
+      </div>
+
+      <div class="resource-card" data-labels="free learning">
+        <div class="resource-header">
+          <span class="resource-icon">💪</span>
+          <div><h3>Core Confidence</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-learning">Learning</span></div></div>
+        </div>
+        <p>Small acts of confidence to build progress and momentum. Articles, workbooks, and programs to help you develop unshakeable confidence in your career and life.</p>
+        <a href="https://coreconfidence.com.au/resources/" target="_blank" class="resource-link">Explore Resources →</a>
+      </div>
+
+      <div class="resource-card" data-labels="network free">
         <div class="resource-header">
           <span class="resource-icon">💛</span>
           <div><h3>NFP Careers</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
@@ -256,7 +296,7 @@
         <a href="https://www.nfpcareers.org/" target="_blank" class="resource-link">Visit NFP Careers →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="network free">
         <div class="resource-header">
           <span class="resource-icon">🙌</span>
           <div><h3>Volunteer.com.au</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
@@ -265,7 +305,7 @@
         <a href="https://www.volunteer.com.au/" target="_blank" class="resource-link">Visit Volunteer.com.au →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="network free">
         <div class="resource-header">
           <span class="resource-icon">🌱</span>
           <div><h3>Go Volunteer</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
@@ -274,7 +314,7 @@
         <a href="https://govolunteer.com.au/" target="_blank" class="resource-link">Visit Go Volunteer →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="network free">
         <div class="resource-header">
           <span class="resource-icon">🤝</span>
           <div><h3>Career Connect</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-community">Network</span></div></div>
@@ -283,16 +323,16 @@
         <a href="https://www.skool.com/career-connecting-9447/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="resource-link">Join Community →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="network paid learning">
         <div class="resource-header">
           <span class="resource-icon">🤖</span>
-          <div><h3>Engineer Your Mission with AI Prompts</h3><div class="resource-badges"><span class="resource-badge badge-learning">Paid</span><span class="resource-badge badge-community">Network</span></div></div>
+          <div><h3>Engineer Your Mission with AI Prompts</h3><div class="resource-badges"><span class="resource-badge badge-paid">Paid</span><span class="resource-badge badge-community">Network</span></div></div>
         </div>
         <p>Level up your AI prompting skills to supercharge your career strategy, job search, and professional growth.</p>
         <a href="https://www.skool.com/engineeryourmission/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="resource-link">Explore Program →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="network">
         <div class="resource-header">
           <span class="resource-icon">🎓</span>
           <div><h3>ATD (td.org)</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
@@ -301,16 +341,7 @@
         <a href="https://td.org" target="_blank" class="resource-link">Visit ATD →</a>
       </div>
 
-      <div class="resource-card">
-        <div class="resource-header">
-          <span class="resource-icon">🛠️</span>
-          <div><h3>Notion</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
-        </div>
-        <p>Build self-service knowledge hubs, wikis, and onboarding portals with ease — a staple for learning ecosystem design.</p>
-        <a href="https://notion.so" target="_blank" class="resource-link">Visit Notion →</a>
-      </div>
-
-      <div class="resource-card">
+      <div class="resource-card" data-labels="learning">
         <div class="resource-header">
           <span class="resource-icon">📚</span>
           <div><h3>LinkedIn Learning</h3><div class="resource-badges"><span class="resource-badge badge-learning">Learning</span></div></div>
@@ -319,7 +350,16 @@
         <a href="https://linkedin.com/learning" target="_blank" class="resource-link">Visit LinkedIn Learning →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="learning free">
+        <div class="resource-header">
+          <span class="resource-icon">🏛️</span>
+          <div><h3>LinkedIn Learning for Libraries</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-learning">Learning</span></div></div>
+        </div>
+        <p>Free access to 16,000+ LinkedIn Learning courses via your Glen Eira Libraries membership — no LinkedIn account needed, just your library card and PIN.</p>
+        <a href="https://library.gleneira.vic.gov.au/learn/linkedin-learning-for-libraries" target="_blank" class="resource-link">Access via Glen Eira Libraries →</a>
+      </div>
+
+      <div class="resource-card" data-labels="network">
         <div class="resource-header">
           <span class="resource-icon">🌏</span>
           <div><h3>GDG Melbourne</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
@@ -328,7 +368,7 @@
         <a href="https://gdg.community.dev/gdg-melbourne/" target="_blank" class="resource-link">Join GDG Melbourne →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="network">
         <div class="resource-header">
           <span class="resource-icon">👩‍💻</span>
           <div><h3>Women4STEM</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
@@ -337,7 +377,7 @@
         <a href="https://women4stem.com.au/" target="_blank" class="resource-link">Visit Women4STEM →</a>
       </div>
 
-      <div class="resource-card">
+      <div class="resource-card" data-labels="network">
         <div class="resource-header">
           <span class="resource-icon">🎓</span>
           <div><h3>U3A Australia</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
@@ -372,6 +412,14 @@
         </div>
         <p>Quick and easy to build application prototypes — great for rapidly testing and validating ideas without deep technical knowledge.</p>
         <a href="https://app.base44.com/" target="_blank" class="resource-link">Try Base44 →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">🛠️</span>
+          <div><h3>Notion</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
+        </div>
+        <p>Build self-service knowledge hubs, wikis, and onboarding portals with ease — a staple for learning ecosystem design.</p>
+        <a href="https://notion.so" target="_blank" class="resource-link">Visit Notion →</a>
       </div>
       <div class="resource-card">
         <div class="resource-header">
@@ -414,12 +462,20 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>Made with 💚 by <span>Hwan-Yi Choo</span> · Froggy Fun Factory · © 2026</p>
 </footer>
 
 <script>
+function filterCards(label, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#resources-grid .resource-card').forEach(card => {
+    const labels = card.dataset.labels || '';
+    card.classList.toggle('hidden', label !== 'all' && !labels.includes(label));
+  });
+}
+
 function sendEmail() {
   const name = document.getElementById('form-name').value.trim();
   const email = document.getElementById('form-email').value.trim();
@@ -436,6 +492,7 @@ function sendEmail() {
     fallback.scrollIntoView({ behavior: 'smooth' });
   }, 1000);
 }
+
 function copyFallback() {
   const txt = document.getElementById('fallback-text');
   txt.select();
