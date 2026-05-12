@@ -10,425 +10,410 @@
     --green: #22C55E; --green-dark: #16A34A; --green-light: #DCFCE7;
     --blue: #3B82F6; --blue-dark: #1D4ED8; --blue-light: #DBEAFE;
     --pink: #EC4899; --pink-dark: #BE185D; --pink-light: #FCE7F3;
-    --dark: #0F2318; --light: #F0FDF4;
+    --dark: #0F2318; --light: #F0FDF4; --grey: #6B7280;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Segoe UI', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
 
-  nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(34,197,94,0.12); }
-  .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(14px);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.6rem 2rem; box-shadow: 0 2px 16px rgba(34,197,94,0.1);
+  }
+  .logo { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; }
+  .logo img { height: 52px; width: 52px; object-fit: contain; }
+  .logo-text { line-height: 1.15; }
+  .logo-name { font-size: 1.1rem; font-weight: 900; background: linear-gradient(135deg, var(--green-dark), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+  .logo-tag { font-size: 0.65rem; font-weight: 600; color: var(--grey); display: block; letter-spacing: 0.3px; }
   .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-  .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; transition: color 0.3s; cursor: pointer; }
+  .nav-links a { color: var(--dark); font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .nav-links a:hover { color: var(--green-dark); }
 
-  #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #F0FDF4 0%, #DBEAFE 50%, #FCE7F3 100%); text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden; }
-  .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; animation: float 6s ease-in-out infinite; }
-  .blob1 { width: 320px; height: 320px; background: var(--green); top: 5%; left: 5%; }
-  .blob2 { width: 260px; height: 260px; background: var(--pink); bottom: 8%; right: 5%; animation-delay: 2s; }
-  .blob3 { width: 220px; height: 220px; background: var(--blue); top: 50%; left: 55%; animation-delay: 4s; }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-22px)} }
-  .hero-content { position: relative; z-index: 1; max-width: 780px; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 1px; }
-  h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 0.4rem; }
-  .pronoun { font-size: 1rem; font-weight: 500; color: #6B7280; margin-bottom: 1rem; display: block; }
-  .gradient-text { background: linear-gradient(135deg, var(--green-dark), var(--blue), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero-title { font-size: 1.05rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1rem; }
-  .hero-sub { font-size: 1rem; color: #4B5563; max-width: 640px; margin: 0 auto 2.5rem; line-height: 1.8; }
-  .btn { display: inline-block; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
-  .btn-primary { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; box-shadow: 0 4px 20px rgba(34,197,94,0.35); margin-right: 1rem; }
-  .btn-outline { background: #fff; color: var(--green-dark); border: 2px solid var(--green); }
-  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(34,197,94,0.4); }
-
+  /* ── SECTIONS ── */
   section { padding: 5rem 2rem; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-tag { display: inline-block; background: linear-gradient(135deg, var(--green), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
-  h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 1rem; }
-  .section-divider { width: 60px; height: 5px; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue), var(--pink)); margin-bottom: 2rem; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 0.78rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: linear-gradient(135deg, var(--green), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.4rem; display: block; }
+  h2 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 900; margin-bottom: 0.75rem; }
+  .divider { width: 48px; height: 5px; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue), var(--pink)); margin-bottom: 2.5rem; }
+  .gradient-text { background: linear-gradient(135deg, var(--green-dark), var(--blue), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(145deg, #F0FDF4 0%, #DBEAFE 55%, #FCE7F3 100%);
+    text-align: center; padding: 7rem 2rem 4rem; position: relative; overflow: hidden;
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.3; animation: float 7s ease-in-out infinite; pointer-events: none; }
+  .b1 { width: 380px; height: 380px; background: var(--green); top: -5%; left: -5%; }
+  .b2 { width: 300px; height: 300px; background: var(--pink); bottom: 0; right: -3%; animation-delay: 2.5s; }
+  .b3 { width: 240px; height: 240px; background: var(--blue); top: 45%; left: 50%; animation-delay: 5s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-24px)} }
+  .hero-inner { position: relative; z-index: 1; max-width: 740px; }
+  .hero-logo { width: 120px; height: 120px; object-fit: contain; margin: 0 auto 1.2rem; display: block; filter: drop-shadow(0 8px 24px rgba(34,197,94,0.25)); }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.1; margin-bottom: 0.3rem; }
+  .pronoun { font-size: 0.95rem; color: var(--grey); font-weight: 500; margin-bottom: 0.9rem; display: block; }
+  .hero-role { font-size: 1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.9rem; line-height: 1.5; }
+  .hero-sub { font-size: 1rem; color: #4B5563; line-height: 1.85; max-width: 620px; margin: 0 auto 2.2rem; }
+  .btn { padding: 0.85rem 1.8rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; text-decoration: none; }
+  .btn-primary { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; box-shadow: 0 4px 18px rgba(34,197,94,0.35); margin-right: 0.75rem; }
+  .btn-outline { background: #fff; color: var(--green-dark); border: 2px solid var(--green); }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(34,197,94,0.35); }
+
+  /* ── ABOUT ── */
   #about { background: #fff; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .about-img { width: 100%; aspect-ratio: 1; border-radius: 30px; background: linear-gradient(135deg, var(--green-light), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 7rem; box-shadow: 0 20px 60px rgba(34,197,94,0.2); }
-  .about-text p { color: #4B5563; line-height: 1.8; margin-bottom: 1rem; font-size: 1.05rem; }
-  .fun-facts { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
-  .fact-chip { background: linear-gradient(135deg, var(--green-light), var(--blue-light)); border-radius: 50px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--green-dark); }
+  .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 3.5rem; align-items: center; }
+  .about-img { width: 100%; aspect-ratio: 1; border-radius: 28px; background: linear-gradient(135deg, var(--green-light), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 6rem; box-shadow: 0 16px 50px rgba(34,197,94,0.18); }
+  .about-text p { color: #4B5563; line-height: 1.85; margin-bottom: 1rem; font-size: 1rem; }
+  .chips { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.2rem; }
+  .chip { background: linear-gradient(135deg, var(--green-light), var(--blue-light)); border-radius: 50px; padding: 0.45rem 0.9rem; font-size: 0.82rem; font-weight: 600; color: var(--green-dark); }
 
+  /* ── PROJECTS ── */
   #projects { background: var(--light); }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-  .project-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
-  .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(34,197,94,0.2); }
-  .project-thumb { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
-  .thumb1 { background: linear-gradient(135deg, var(--green-light), var(--blue-light)); }
-  .thumb2 { background: linear-gradient(135deg, var(--blue-light), var(--pink-light)); }
-  .thumb3 { background: linear-gradient(135deg, var(--pink-light), var(--green-light)); }
-  .project-info { padding: 1.5rem; }
-  .project-info h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; }
-  .project-info p { color: #6B7280; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
-  .tag { display: inline-block; background: var(--green-light); color: var(--green-dark); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-right: 0.3rem; margin-bottom: 0.3rem; }
-  .tag-blue { background: var(--blue-light); color: var(--blue-dark); }
-  .tag-pink { background: var(--pink-light); color: var(--pink-dark); }
-  .project-link { color: var(--pink); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
-  .project-link:hover { text-decoration: underline; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.4rem; }
+  .proj-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
+  .proj-card:hover { transform: translateY(-7px); box-shadow: 0 18px 44px rgba(34,197,94,0.18); }
+  .proj-thumb { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+  .t1 { background: linear-gradient(135deg, var(--green-light), var(--blue-light)); }
+  .t2 { background: linear-gradient(135deg, var(--blue-light), var(--pink-light)); }
+  .t3 { background: linear-gradient(135deg, var(--pink-light), var(--green-light)); }
+  .proj-body { padding: 1.25rem; }
+  .proj-body h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .proj-body p { color: var(--grey); font-size: 0.88rem; line-height: 1.6; margin-bottom: 0.9rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.9rem; }
+  .tag { padding: 0.2rem 0.65rem; border-radius: 50px; font-size: 0.73rem; font-weight: 700; }
+  .tg { background: var(--green-light); color: var(--green-dark); }
+  .tb { background: var(--blue-light); color: var(--blue-dark); }
+  .tp { background: var(--pink-light); color: var(--pink-dark); }
+  .proj-link { color: var(--pink); font-weight: 700; font-size: 0.88rem; text-decoration: none; }
+  .proj-link:hover { text-decoration: underline; }
 
+  /* ── SKILLS ── */
   #skills { background: #fff; }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
-  .skill-card { background: var(--light); border-radius: 16px; padding: 1.5rem 1rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
-  .skill-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(34,197,94,0.2); }
-  .skill-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-  .skill-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
-  .skill-bar { height: 6px; background: #E5E7EB; border-radius: 10px; overflow: hidden; }
-  .skill-fill { height: 100%; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue)); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
+  .skill-card { background: var(--light); border-radius: 14px; padding: 1.25rem 0.75rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(34,197,94,0.18); }
+  .skill-icon { font-size: 2.2rem; margin-bottom: 0.4rem; }
+  .skill-card h4 { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.45rem; }
+  .bar { height: 5px; background: #E5E7EB; border-radius: 10px; overflow: hidden; }
+  .fill { height: 100%; border-radius: 10px; background: linear-gradient(135deg, var(--green), var(--blue)); }
 
-  /* RESOURCES */
-  #resources { background: linear-gradient(135deg, var(--green-light) 0%, var(--blue-light) 50%, var(--pink-light) 100%); }
-  .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  .filter-btn { padding: 0.45rem 1.1rem; border-radius: 50px; font-size: 0.82rem; font-weight: 700; border: 2px solid transparent; cursor: pointer; transition: all 0.2s; background: #fff; color: var(--dark); }
-  .filter-btn:hover { border-color: var(--green); color: var(--green-dark); }
-  .filter-btn.active { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border-color: transparent; }
-  .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-  .resource-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s; display: flex; flex-direction: column; gap: 0.5rem; }
-  .resource-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(34,197,94,0.2); }
-  .resource-card.hidden { display: none; }
-  .resource-header { display: flex; align-items: center; gap: 0.75rem; }
-  .resource-icon { font-size: 2rem; }
-  .resource-card h3 { font-size: 1rem; font-weight: 800; }
-  .resource-card p { color: #6B7280; font-size: 0.88rem; line-height: 1.6; }
-  .resource-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.1rem; }
-  .resource-badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
-  .badge-free { background: var(--green-light); color: var(--green-dark); }
-  .badge-community { background: var(--blue-light); color: var(--blue-dark); }
-  .badge-learning { background: var(--pink-light); color: var(--pink-dark); }
-  .badge-paid { background: #FEF9C3; color: #92400E; }
-  .resource-link { color: var(--pink); font-weight: 700; font-size: 0.85rem; text-decoration: none; margin-top: auto; }
-  .resource-link:hover { text-decoration: underline; }
+  /* ── RESOURCES ── */
+  #resources { background: linear-gradient(145deg, var(--green-light), var(--blue-light) 50%, var(--pink-light)); }
+  .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+  .fb { padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; border: 2px solid #D1FAE5; background: #fff; color: var(--dark); cursor: pointer; transition: all 0.2s; }
+  .fb:hover { border-color: var(--green); color: var(--green-dark); }
+  .fb.active { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border-color: transparent; }
+  .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.2rem; }
+  .res-card { background: #fff; border-radius: 18px; padding: 1.25rem; box-shadow: 0 3px 14px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; gap: 0.45rem; }
+  .res-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(34,197,94,0.18); }
+  .res-card.hidden { display: none; }
+  .res-header { display: flex; align-items: flex-start; gap: 0.7rem; }
+  .res-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .res-title-wrap h3 { font-size: 0.95rem; font-weight: 800; line-height: 1.3; }
+  .badges { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.25rem; }
+  .badge { padding: 0.15rem 0.6rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700; }
+  .bfree { background: var(--green-light); color: var(--green-dark); }
+  .bnet { background: var(--blue-light); color: var(--blue-dark); }
+  .blearn { background: var(--pink-light); color: var(--pink-dark); }
+  .bpaid { background: #FEF9C3; color: #92400E; }
+  .res-card p { color: var(--grey); font-size: 0.85rem; line-height: 1.6; }
+  .res-link { color: var(--pink); font-weight: 700; font-size: 0.83rem; text-decoration: none; margin-top: auto; }
+  .res-link:hover { text-decoration: underline; }
 
-  #contact { background: #fff; }
-  .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .contact-info h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
-  .contact-info p { color: #6B7280; line-height: 1.8; margin-bottom: 2rem; }
-  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--dark); font-weight: 600; padding: 0.75rem 1rem; border-radius: 12px; background: var(--light); transition: background 0.3s, color 0.3s; }
-  .contact-link:hover { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; }
-  .contact-link span:first-child { font-size: 1.3rem; }
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group label { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
-  .form-group input, .form-group textarea { padding: 0.85rem 1rem; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 0.95rem; font-family: inherit; transition: border-color 0.3s; outline: none; }
-  .form-group input:focus, .form-group textarea:focus { border-color: var(--green); }
-  .form-group textarea { resize: vertical; min-height: 120px; }
-  .btn-submit { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border: none; padding: 0.9rem; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-  .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(34,197,94,0.4); }
+  /* ── AI RESOURCES ── */
+  #ai-resources { background: #fff; }
 
-  footer { background: var(--dark); color: #fff; text-align: center; padding: 2rem; }
-  footer p { opacity: 0.7; font-size: 0.9rem; }
+  /* ── CONTACT ── */
+  #contact { background: linear-gradient(145deg, #F0FDF4, #DBEAFE 50%, #FCE7F3); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+  .contact-info h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .contact-info p { color: var(--grey); line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .clinks { display: flex; flex-direction: column; gap: 0.75rem; }
+  .clink { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; padding: 0.7rem 1rem; border-radius: 12px; background: #fff; transition: background 0.3s, color 0.3s; }
+  .clink:hover { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; }
+  .cform { display: flex; flex-direction: column; gap: 0.9rem; }
+  .fg { display: flex; flex-direction: column; gap: 0.35rem; }
+  .fg label { font-size: 0.82rem; font-weight: 700; }
+  .fg input, .fg textarea { padding: 0.8rem 1rem; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 0.92rem; font-family: inherit; outline: none; transition: border-color 0.2s; }
+  .fg input:focus, .fg textarea:focus { border-color: var(--green); }
+  .fg textarea { resize: vertical; min-height: 110px; }
+  .btn-send { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border: none; padding: 0.85rem; border-radius: 50px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-send:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(34,197,94,0.35); }
+  .fallback-box { display: none; margin-top: 1.2rem; background: var(--light); border-radius: 14px; padding: 1.1rem; }
+  .fallback-box p { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.6rem; }
+  .fallback-box textarea { width: 100%; border: 2px solid #E5E7EB; border-radius: 10px; padding: 0.7rem; font-family: inherit; font-size: 0.82rem; resize: none; background: #fff; }
+  .btn-copy { margin-top: 0.6rem; background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border: none; padding: 0.6rem 1.3rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+
+  footer { background: var(--dark); color: #fff; text-align: center; padding: 1.75rem; }
+  footer p { opacity: 0.65; font-size: 0.88rem; }
   footer span { background: linear-gradient(135deg, var(--green), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
 
   @media (max-width: 768px) {
-    .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
     .nav-links { display: none; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="logo">🐸 Froggy Fun Factory</div>
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <img src="https://i.imgur.com/placeholder.png" onerror="this.style.display='none'" alt="Froggy Fun Factory">
+    <div class="logo-text">
+      <span class="logo-name">🐸 Froggy Fun Factory</span>
+      <span class="logo-tag">Making onboarding fun</span>
+    </div>
+  </div>
   <ul class="nav-links">
     <li><a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a></li>
-    <li><a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a></li>
-    <li><a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</a></li>
+    <li><a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">My Work</a></li>
     <li><a onclick="document.getElementById('resources').scrollIntoView({behavior:'smooth'})">Resources</a></li>
-    <li><a onclick="document.getElementById('ai-resources').scrollIntoView({behavior:'smooth'})">AI Resources</a></li>
     <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
-  <div class="hero-content">
-    <div class="hero-badge">🐸 Welcome to Froggy Fun Factory</div>
+  <div class="b1 blob"></div>
+  <div class="b2 blob"></div>
+  <div class="b3 blob"></div>
+  <div class="hero-inner">
+    <img id="hero-logo" src="FroggyFunFactory_icon.png" alt="Froggy Fun Factory" style="width:140px;height:140px;object-fit:contain;margin:0 auto 1.2rem;display:block;filter:drop-shadow(0 10px 28px rgba(34,197,94,0.28))">
     <h1>Hi, I'm <span class="gradient-text">Hwan-Yi Choo</span></h1>
     <span class="pronoun">she/her</span>
-    <p class="hero-title">Senior Learning Experience & Onboarding Strategist | Architecting Scalable Technical Capability Uplift</p>
+    <p class="hero-role">Senior Learning Experience & Onboarding Strategist<br>Architecting Scalable Technical Capability Uplift</p>
     <p class="hero-sub">Designing end-to-end learning journeys and self-service ecosystems to transform expert knowledge into high-impact training that enables talent to thrive in technical environments.</p>
     <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See My Work</button>
     <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-img">🐸</div>
       <div class="about-text">
-        <p class="section-tag">About Me</p>
+        <span class="section-label">About Me</span>
         <h2>A little bit <span class="gradient-text">about me</span></h2>
-        <div class="section-divider"></div>
-        <p>Hey there! I'm Hwan-Yi — a learning experience strategist who's passionate about turning complex technical knowledge into clear, engaging, and scalable training experiences.</p>
-        <p>I specialise in onboarding design, self-service ecosystems, and building capability uplift programs that help people genuinely thrive in technical environments.</p>
-        <div class="fun-facts">
-          <span class="fact-chip">🐸 Frog enthusiast</span>
-          <span class="fact-chip">📐 Systems thinker</span>
-          <span class="fact-chip">🚀 Learning architect</span>
-          <span class="fact-chip">✨ Knowledge translator</span>
+        <div class="divider"></div>
+        <p>Hey there! I'm Hwan-Yi — a learning experience strategist passionate about turning complex technical knowledge into clear, engaging, and scalable training experiences.</p>
+        <p>I specialise in onboarding design, self-service learning ecosystems, and capability uplift programs that help people genuinely thrive in technical environments.</p>
+        <div class="chips">
+          <span class="chip">🐸 Frog enthusiast</span>
+          <span class="chip">📐 Systems thinker</span>
+          <span class="chip">🚀 Learning architect</span>
+          <span class="chip">✨ Knowledge translator</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <p class="section-tag">My Work</p>
+    <span class="section-label">My Work</span>
     <h2>Featured <span class="gradient-text">Projects</span></h2>
-    <div class="section-divider"></div>
+    <div class="divider"></div>
     <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-thumb thumb1">📊</div>
-        <div class="project-info">
+      <div class="proj-card">
+        <div class="proj-thumb t1">📊</div>
+        <div class="proj-body">
           <h3>Job Productivity Tracker</h3>
-          <p>An interactive tracker to help job seekers stay organised, monitor their progress, and boost productivity throughout the job hunt process.</p>
-          <div><span class="tag">Productivity</span><span class="tag tag-blue">Job Search</span><span class="tag tag-pink">Tool</span></div>
-          <a href="https://claude.ai/public/artifacts/7a8668ac-b4a0-4260-90df-d39a4e4e852c" target="_blank" class="project-link">View Project →</a>
+          <p>An interactive tracker to help job seekers stay organised, monitor progress, and boost productivity throughout the job hunt.</p>
+          <div class="tags"><span class="tag tg">Productivity</span><span class="tag tb">Job Search</span><span class="tag tp">Tool</span></div>
+          <a href="https://claude.ai/public/artifacts/7a8668ac-b4a0-4260-90df-d39a4e4e852c" target="_blank" class="proj-link">View Project →</a>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb thumb2">📚</div>
-        <div class="project-info">
+      <div class="proj-card">
+        <div class="proj-thumb t2">📚</div>
+        <div class="proj-body">
           <h3>Self-Service Learning Ecosystem</h3>
           <p>Architected a scalable knowledge hub enabling teams to access training, documentation, and resources independently.</p>
-          <div><span class="tag tag-blue">Knowledge Management</span><span class="tag tag-pink">Self-Service</span></div>
-          <a href="https://lumi-growth-hub.base44.app" target="_blank" class="project-link">View Project →</a>
+          <div class="tags"><span class="tag tb">Knowledge Management</span><span class="tag tp">Self-Service</span></div>
+          <a href="https://lumi-growth-hub.base44.app" target="_blank" class="proj-link">View Project →</a>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb thumb3">🎮</div>
-        <div class="project-info">
+      <div class="proj-card">
+        <div class="proj-thumb t3">🎮</div>
+        <div class="proj-body">
           <h3>Technical Capability Uplift Program</h3>
-          <p><strong>Version 1 — Gamification of Learning:</strong> An interactive quiz-based experience that transforms technical skill building into an engaging, game-like journey for learners.</p>
-          <div><span class="tag tag-pink">Capability Building</span><span class="tag">Gamification</span><span class="tag tag-blue">Instructional Design</span></div>
-          <a href="https://skill-master-quiz.base44.app" target="_blank" class="project-link">View Project →</a>
+          <p><strong>Version 1 — Gamification of Learning:</strong> An interactive quiz-based experience transforming technical skill building into an engaging, game-like journey.</p>
+          <div class="tags"><span class="tag tp">Capability Building</span><span class="tag tg">Gamification</span><span class="tag tb">Instructional Design</span></div>
+          <a href="https://skill-master-quiz.base44.app" target="_blank" class="proj-link">View Project →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
   <div class="container">
-    <p class="section-tag">What I Bring</p>
+    <span class="section-label">What I Bring</span>
     <h2>My <span class="gradient-text">Skills</span></h2>
-    <div class="section-divider"></div>
+    <div class="divider"></div>
     <div class="skills-grid">
-      <div class="skill-card"><div class="skill-icon">🗺️</div><h4>Learning Design</h4><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
-      <div class="skill-card"><div class="skill-icon">🚀</div><h4>Onboarding Strategy</h4><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
-      <div class="skill-card"><div class="skill-icon">📐</div><h4>Systems Thinking</h4><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
-      <div class="skill-card"><div class="skill-icon">🧠</div><h4>Knowledge Management</h4><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
-      <div class="skill-card"><div class="skill-icon">📊</div><h4>Data & Analytics</h4><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
-      <div class="skill-card"><div class="skill-icon">💬</div><h4>Stakeholder Comms</h4><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
-      <div class="skill-card"><div class="skill-icon">🛠️</div><h4>Instructional Design</h4><div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div></div>
-      <div class="skill-card"><div class="skill-icon">🤝</div><h4>Facilitation</h4><div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🗺️</div><h4>Learning Design</h4><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🚀</div><h4>Onboarding Strategy</h4><div class="bar"><div class="fill" style="width:92%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">📐</div><h4>Systems Thinking</h4><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🧠</div><h4>Knowledge Mgmt</h4><div class="bar"><div class="fill" style="width:88%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><h4>Data & Analytics</h4><div class="bar"><div class="fill" style="width:80%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">💬</div><h4>Stakeholder Comms</h4><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🛠️</div><h4>Instructional Design</h4><div class="bar"><div class="fill" style="width:93%"></div></div></div>
+      <div class="skill-card"><div class="skill-icon">🤝</div><h4>Facilitation</h4><div class="bar"><div class="fill" style="width:87%"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- RESOURCES & NETWORKS -->
+<!-- RESOURCES -->
 <section id="resources">
   <div class="container">
-    <p class="section-tag">Useful Stuff</p>
+    <span class="section-label">Useful Stuff</span>
     <h2>Resources <span class="gradient-text">&amp; Networks</span></h2>
-    <div class="section-divider"></div>
+    <div class="divider"></div>
 
-    <!-- FILTER BAR -->
     <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
-      <button class="filter-btn" onclick="filterCards('free', this)">Free</button>
-      <button class="filter-btn" onclick="filterCards('network', this)">Network</button>
-      <button class="filter-btn" onclick="filterCards('learning', this)">Learning</button>
-      <button class="filter-btn" onclick="filterCards('paid', this)">Paid</button>
+      <button class="fb active" onclick="filter('all',this)">All</button>
+      <button class="fb" onclick="filter('free',this)">Free</button>
+      <button class="fb" onclick="filter('network',this)">Network</button>
+      <button class="fb" onclick="filter('learning',this)">Learning</button>
+      <button class="fb" onclick="filter('paid',this)">Paid</button>
+      <button class="fb" onclick="filter('ai',this)">AI Tools</button>
+      <button class="fb" onclick="filter('book',this)">Books</button>
     </div>
 
-    <div class="resources-grid" id="resources-grid">
+    <div class="res-grid" id="rg">
 
-      <div class="resource-card" data-labels="free learning">
-        <div class="resource-header">
-          <span class="resource-icon">🌐</span>
-          <div><h3>GitHub Pages Quickstart</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-learning">Learning</span></div></div>
-        </div>
-        <p>Publish your own website for free with GitHub Pages. Step-by-step guide to get your site live at username.github.io — no hosting fees required.</p>
-        <a href="https://docs.github.com/en/pages/quickstart" target="_blank" class="resource-link">Read the Guide →</a>
+      <!-- BOOKS -->
+      <div class="res-card" data-tags="book learning">
+        <div class="res-header"><span class="res-icon">📖</span><div class="res-title-wrap"><h3>The Richest Man in Babylon</h3><div class="badges"><span class="badge blearn">Book</span></div></div></div>
+        <p>A timeless classic on personal finance and wealth-building. Start early — the sooner you begin, the greater the long-term benefits.</p>
+        <a href="https://share.google/ttbgF2POAEbZbgf15" target="_blank" class="res-link">Get the Book →</a>
       </div>
 
-      <div class="resource-card" data-labels="paid">
-        <div class="resource-header">
-          <span class="resource-icon">🔍</span>
-          <div><h3>Calibration Gap Report</h3><div class="resource-badges"><span class="resource-badge badge-paid">Paid</span></div></div>
-        </div>
-        <p>AI-powered analysis that scans your website in 90 seconds to identify revenue leaks, time inefficiencies, and delivers a redesigned site — all personalised to you.</p>
-        <a href="https://aistrategist.com/calibration-gap/" target="_blank" class="resource-link">Check Your Gap →</a>
+      <!-- FREE / LEARNING -->
+      <div class="res-card" data-tags="free learning">
+        <div class="res-header"><span class="res-icon">💪</span><div class="res-title-wrap"><h3>Core Confidence</h3><div class="badges"><span class="badge bfree">Free</span><span class="badge blearn">Learning</span></div></div></div>
+        <p>Small acts of confidence to build progress and momentum — articles, workbooks, and programs to develop unshakeable confidence.</p>
+        <a href="https://coreconfidence.com.au/resources/" target="_blank" class="res-link">Explore Resources →</a>
       </div>
 
-      <div class="resource-card" data-labels="learning paid">
-        <div class="resource-header">
-          <span class="resource-icon">🚀</span>
-          <div><h3>Promotable You</h3><div class="resource-badges"><span class="resource-badge badge-paid">Paid</span><span class="resource-badge badge-learning">Learning</span></div></div>
-        </div>
-        <p>Career and leadership coaching programs for women ready to 10x their career. Find your dream job, build inner confidence, and claim your seat at the leadership table.</p>
-        <a href="https://www.promotableyou.com/" target="_blank" class="resource-link">Explore Promotable You →</a>
+      <div class="res-card" data-tags="free learning">
+        <div class="res-header"><span class="res-icon">🌐</span><div class="res-title-wrap"><h3>GitHub Pages Quickstart</h3><div class="badges"><span class="badge bfree">Free</span><span class="badge blearn">Learning</span></div></div></div>
+        <p>Publish your own website for free with GitHub Pages — step-by-step guide to go live at username.github.io, no hosting fees.</p>
+        <a href="https://docs.github.com/en/pages/quickstart" target="_blank" class="res-link">Read the Guide →</a>
       </div>
 
-      <div class="resource-card" data-labels="free learning">
-        <div class="resource-header">
-          <span class="resource-icon">💪</span>
-          <div><h3>Core Confidence</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-learning">Learning</span></div></div>
-        </div>
-        <p>Small acts of confidence to build progress and momentum. Articles, workbooks, and programs to help you develop unshakeable confidence in your career and life.</p>
-        <a href="https://coreconfidence.com.au/resources/" target="_blank" class="resource-link">Explore Resources →</a>
+      <div class="res-card" data-tags="free learning">
+        <div class="res-header"><span class="res-icon">🏛️</span><div class="res-title-wrap"><h3>LinkedIn Learning for Libraries</h3><div class="badges"><span class="badge bfree">Free</span><span class="badge blearn">Learning</span></div></div></div>
+        <p>Free access to 16,000+ LinkedIn Learning courses via your Glen Eira Libraries membership — just your library card and PIN.</p>
+        <a href="https://library.gleneira.vic.gov.au/learn/linkedin-learning-for-libraries" target="_blank" class="res-link">Access via Glen Eira Libraries →</a>
       </div>
 
-      <div class="resource-card" data-labels="network free">
-        <div class="resource-header">
-          <span class="resource-icon">💛</span>
-          <div><h3>NFP Careers</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>Find volunteer and paid roles in the not-for-profit sector — connecting purpose-driven people with meaningful opportunities.</p>
-        <a href="https://www.nfpcareers.org/" target="_blank" class="resource-link">Visit NFP Careers →</a>
-      </div>
-
-      <div class="resource-card" data-labels="network free">
-        <div class="resource-header">
-          <span class="resource-icon">🙌</span>
-          <div><h3>Volunteer.com.au</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>Australia's go-to platform for finding local volunteering opportunities across a wide range of causes and organisations.</p>
-        <a href="https://www.volunteer.com.au/" target="_blank" class="resource-link">Visit Volunteer.com.au →</a>
-      </div>
-
-      <div class="resource-card" data-labels="network free">
-        <div class="resource-header">
-          <span class="resource-icon">🌱</span>
-          <div><h3>Go Volunteer</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>Browse hundreds of volunteer roles across Australia — from community support to events, conservation, and more.</p>
-        <a href="https://govolunteer.com.au/" target="_blank" class="resource-link">Visit Go Volunteer →</a>
-      </div>
-
-      <div class="resource-card" data-labels="network free">
-        <div class="resource-header">
-          <span class="resource-icon">🤝</span>
-          <div><h3>Career Connect</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>A free community packed with resources, tips, and support to help you navigate your job hunt with confidence.</p>
-        <a href="https://www.skool.com/career-connecting-9447/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="resource-link">Join Community →</a>
-      </div>
-
-      <div class="resource-card" data-labels="network paid learning">
-        <div class="resource-header">
-          <span class="resource-icon">🤖</span>
-          <div><h3>Engineer Your Mission with AI Prompts</h3><div class="resource-badges"><span class="resource-badge badge-paid">Paid</span><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>Level up your AI prompting skills to supercharge your career strategy, job search, and professional growth.</p>
-        <a href="https://www.skool.com/engineeryourmission/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="resource-link">Explore Program →</a>
-      </div>
-
-      <div class="resource-card" data-labels="network">
-        <div class="resource-header">
-          <span class="resource-icon">🎓</span>
-          <div><h3>ATD (td.org)</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>The Association for Talent Development — a global hub for L&D professionals with resources, events, and certification pathways.</p>
-        <a href="https://td.org" target="_blank" class="resource-link">Visit ATD →</a>
-      </div>
-
-      <div class="resource-card" data-labels="learning">
-        <div class="resource-header">
-          <span class="resource-icon">📚</span>
-          <div><h3>LinkedIn Learning</h3><div class="resource-badges"><span class="resource-badge badge-learning">Learning</span></div></div>
-        </div>
+      <div class="res-card" data-tags="learning">
+        <div class="res-header"><span class="res-icon">📚</span><div class="res-title-wrap"><h3>LinkedIn Learning</h3><div class="badges"><span class="badge blearn">Learning</span></div></div></div>
         <p>Thousands of courses in instructional design, leadership, and tech skills — great for ongoing professional development.</p>
-        <a href="https://linkedin.com/learning" target="_blank" class="resource-link">Visit LinkedIn Learning →</a>
+        <a href="https://linkedin.com/learning" target="_blank" class="res-link">Visit LinkedIn Learning →</a>
       </div>
 
-      <div class="resource-card" data-labels="learning free">
-        <div class="resource-header">
-          <span class="resource-icon">🏛️</span>
-          <div><h3>LinkedIn Learning for Libraries</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span><span class="resource-badge badge-learning">Learning</span></div></div>
-        </div>
-        <p>Free access to 16,000+ LinkedIn Learning courses via your Glen Eira Libraries membership — no LinkedIn account needed, just your library card and PIN.</p>
-        <a href="https://library.gleneira.vic.gov.au/learn/linkedin-learning-for-libraries" target="_blank" class="resource-link">Access via Glen Eira Libraries →</a>
+      <!-- PAID -->
+      <div class="res-card" data-tags="paid learning">
+        <div class="res-header"><span class="res-icon">🚀</span><div class="res-title-wrap"><h3>Promotable You</h3><div class="badges"><span class="badge bpaid">Paid</span><span class="badge blearn">Learning</span></div></div></div>
+        <p>Career and leadership coaching for women ready to 10x their career — confidence, dream job strategy, and leadership growth.</p>
+        <a href="https://www.promotableyou.com/" target="_blank" class="res-link">Explore Promotable You →</a>
       </div>
 
-      <div class="resource-card" data-labels="network">
-        <div class="resource-header">
-          <span class="resource-icon">🌏</span>
-          <div><h3>GDG Melbourne</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>Google Developer Group Melbourne — a local community for developers, technologists, and curious minds to connect, learn, and grow together.</p>
-        <a href="https://gdg.community.dev/gdg-melbourne/" target="_blank" class="resource-link">Join GDG Melbourne →</a>
+      <div class="res-card" data-tags="paid network learning">
+        <div class="res-header"><span class="res-icon">🤖</span><div class="res-title-wrap"><h3>Engineer Your Mission with AI Prompts</h3><div class="badges"><span class="badge bpaid">Paid</span><span class="badge bnet">Network</span></div></div></div>
+        <p>Level up your AI prompting skills to supercharge your career strategy, job search, and professional growth.</p>
+        <a href="https://www.skool.com/engineeryourmission/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="res-link">Explore Program →</a>
       </div>
 
-      <div class="resource-card" data-labels="network">
-        <div class="resource-header">
-          <span class="resource-icon">👩‍💻</span>
-          <div><h3>Women4STEM</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>An Australian community championing women in science, technology, engineering, and mathematics through connection, mentorship, and advocacy.</p>
-        <a href="https://women4stem.com.au/" target="_blank" class="resource-link">Visit Women4STEM →</a>
+      <div class="res-card" data-tags="paid">
+        <div class="res-header"><span class="res-icon">🔍</span><div class="res-title-wrap"><h3>Calibration Gap Report</h3><div class="badges"><span class="badge bpaid">Paid</span></div></div></div>
+        <p>AI-powered analysis that scans your website in 90 seconds to identify revenue leaks, time inefficiencies, and delivers a personalised redesign.</p>
+        <a href="https://aistrategist.com/calibration-gap/" target="_blank" class="res-link">Check Your Gap →</a>
       </div>
 
-      <div class="resource-card" data-labels="network">
-        <div class="resource-header">
-          <span class="resource-icon">🎓</span>
-          <div><h3>U3A Australia</h3><div class="resource-badges"><span class="resource-badge badge-community">Network</span></div></div>
-        </div>
-        <p>Universities of the Third Age — volunteer-led community groups across Australia offering education, social activities, and connection for lifelong learners.</p>
-        <a href="https://u3aaustralia.org.au/" target="_blank" class="resource-link">Visit U3A Australia →</a>
+      <!-- NETWORK / FREE -->
+      <div class="res-card" data-tags="free network">
+        <div class="res-header"><span class="res-icon">🤝</span><div class="res-title-wrap"><h3>Career Connect</h3><div class="badges"><span class="badge bfree">Free</span><span class="badge bnet">Network</span></div></div></div>
+        <p>A free community packed with resources, tips, and support to help you navigate your job hunt with confidence.</p>
+        <a href="https://www.skool.com/career-connecting-9447/about?ref=bfb2b16a4d994290b9b5470ee12709d5" target="_blank" class="res-link">Join Community →</a>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- AI RESOURCES -->
-<section id="ai-resources" style="background:#fff;">
-  <div class="container">
-    <p class="section-tag">Explore & Experiment</p>
-    <h2>AI Resources <span class="gradient-text">to Try</span></h2>
-    <div class="section-divider"></div>
-    <div class="resources-grid">
-      <div class="resource-card">
-        <div class="resource-header">
-          <span class="resource-icon">🤖</span>
-          <div><h3>Claude (Anthropic)</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
-        </div>
-        <p>Quick to build AI-enabled websites. Guided step-by-step process with Artifacts — perfect for bringing ideas to life without coding experience.</p>
-        <a href="https://claude.ai/" target="_blank" class="resource-link">Try Claude →</a>
+      <div class="res-card" data-tags="network">
+        <div class="res-header"><span class="res-icon">🎓</span><div class="res-title-wrap"><h3>ATD (td.org)</h3><div class="badges"><span class="badge bnet">Network</span></div></div></div>
+        <p>The Association for Talent Development — a global hub for L&D professionals with resources, events, and certification pathways.</p>
+        <a href="https://td.org" target="_blank" class="res-link">Visit ATD →</a>
       </div>
-      <div class="resource-card">
-        <div class="resource-header">
-          <span class="resource-icon">⚡</span>
-          <div><h3>Base44</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
-        </div>
+
+      <div class="res-card" data-tags="network">
+        <div class="res-header"><span class="res-icon">🌏</span><div class="res-title-wrap"><h3>GDG Melbourne</h3><div class="badges"><span class="badge bnet">Network</span></div></div></div>
+        <p>Google Developer Group Melbourne — a local community for developers, technologists, and curious minds to connect, learn, and grow.</p>
+        <a href="https://gdg.community.dev/gdg-melbourne/" target="_blank" class="res-link">Join GDG Melbourne →</a>
+      </div>
+
+      <div class="res-card" data-tags="network">
+        <div class="res-header"><span class="res-icon">👩‍💻</span><div class="res-title-wrap"><h3>Women4STEM</h3><div class="badges"><span class="badge bnet">Network</span></div></div></div>
+        <p>An Australian community championing women in STEM through connection, mentorship, and advocacy.</p>
+        <a href="https://women4stem.com.au/" target="_blank" class="res-link">Visit Women4STEM →</a>
+      </div>
+
+      <div class="res-card" data-tags="network">
+        <div class="res-header"><span class="res-icon">🎓</span><div class="res-title-wrap"><h3>U3A Australia</h3><div class="badges"><span class="badge bnet">Network</span></div></div></div>
+        <p>Universities of the Third Age — volunteer-led community groups across Australia for education, social activities, and lifelong learning.</p>
+        <a href="https://u3aaustralia.org.au/" target="_blank" class="res-link">Visit U3A Australia →</a>
+      </div>
+
+      <div class="res-card" data-tags="network">
+        <div class="res-header"><span class="res-icon">💛</span><div class="res-title-wrap"><h3>NFP Careers</h3><div class="badges"><span class="badge bnet">Network</span></div></div></div>
+        <p>Find volunteer and paid roles in the not-for-profit sector — connecting purpose-driven people with meaningful opportunities.</p>
+        <a href="https://www.nfpcareers.org/" target="_blank" class="res-link">Visit NFP Careers →</a>
+      </div>
+
+      <div class="res-card" data-tags="network">
+        <div class="res-header"><span class="res-icon">🙌</span><div class="res-title-wrap"><h3>Volunteer.com.au</h3><div class="badges"><span class="badge bnet">Network</span></div></div></div>
+        <p>Australia's go-to platform for finding local volunteering opportunities across a wide range of causes and organisations.</p>
+        <a href="https://www.volunteer.com.au/" target="_blank" class="res-link">Visit Volunteer.com.au →</a>
+      </div>
+
+      <div class="res-card" data-tags="network">
+        <div class="res-header"><span class="res-icon">🌱</span><div class="res-title-wrap"><h3>Go Volunteer</h3><div class="badges"><span class="badge bnet">Network</span></div></div></div>
+        <p>Browse hundreds of volunteer roles across Australia — community support, events, conservation, and more.</p>
+        <a href="https://govolunteer.com.au/" target="_blank" class="res-link">Visit Go Volunteer →</a>
+      </div>
+
+      <!-- AI TOOLS -->
+      <div class="res-card" data-tags="ai free">
+        <div class="res-header"><span class="res-icon">🤖</span><div class="res-title-wrap"><h3>Claude (Anthropic)</h3><div class="badges"><span class="badge bfree">Free</span><span class="badge blearn">AI Tool</span></div></div></div>
+        <p>Quick to build AI-enabled websites with a guided step-by-step process using Artifacts — no coding experience needed.</p>
+        <a href="https://claude.ai/" target="_blank" class="res-link">Try Claude →</a>
+      </div>
+
+      <div class="res-card" data-tags="ai free">
+        <div class="res-header"><span class="res-icon">⚡</span><div class="res-title-wrap"><h3>Base44</h3><div class="badges"><span class="badge bfree">Free</span><span class="badge blearn">AI Tool</span></div></div></div>
         <p>Quick and easy to build application prototypes — great for rapidly testing and validating ideas without deep technical knowledge.</p>
-        <a href="https://app.base44.com/" target="_blank" class="resource-link">Try Base44 →</a>
+        <a href="https://app.base44.com/" target="_blank" class="res-link">Try Base44 →</a>
       </div>
-      <div class="resource-card">
-        <div class="resource-header">
-          <span class="resource-icon">🛠️</span>
-          <div><h3>Notion</h3><div class="resource-badges"><span class="resource-badge badge-free">Free</span></div></div>
-        </div>
+
+      <div class="res-card" data-tags="ai free">
+        <div class="res-header"><span class="res-icon">🛠️</span><div class="res-title-wrap"><h3>Notion</h3><div class="badges"><span class="badge bfree">Free</span><span class="badge blearn">AI Tool</span></div></div></div>
         <p>Build self-service knowledge hubs, wikis, and onboarding portals with ease — a staple for learning ecosystem design.</p>
-        <a href="https://notion.so" target="_blank" class="resource-link">Visit Notion →</a>
+        <a href="https://notion.so" target="_blank" class="res-link">Visit Notion →</a>
       </div>
-      <div class="resource-card">
-        <div class="resource-header">
-          <span class="resource-icon">🔗</span>
-          <div><h3>Kong</h3><div class="resource-badges"><span class="resource-badge badge-community">Platform</span></div></div>
-        </div>
+
+      <div class="res-card" data-tags="ai">
+        <div class="res-header"><span class="res-icon">🔗</span><div class="res-title-wrap"><h3>Kong</h3><div class="badges"><span class="badge bnet">Platform</span><span class="badge blearn">AI Tool</span></div></div></div>
         <p>Connect AI to APIs with MCP (Model Context Protocol) — enabling powerful integrations between AI tools and your existing systems.</p>
-        <a href="https://konghq.com/company/why-kong" target="_blank" class="resource-link">Explore Kong →</a>
+        <a href="https://konghq.com/company/why-kong" target="_blank" class="res-link">Explore Kong →</a>
       </div>
+
     </div>
   </div>
 </section>
@@ -436,26 +421,26 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <p class="section-tag">Say Hello</p>
+    <span class="section-label">Say Hello</span>
     <h2>Get In <span class="gradient-text">Touch</span></h2>
-    <div class="section-divider"></div>
-    <div class="contact-wrapper">
+    <div class="divider"></div>
+    <div class="contact-grid">
       <div class="contact-info">
         <h3>Let's connect! 🐸</h3>
-        <p>Have a project in mind, want to collaborate on something exciting, or just want to say hi? I'd love to hear from you!</p>
-        <div class="contact-links">
-          <a href="https://www.linkedin.com/in/chooh/" target="_blank" class="contact-link"><span>💼</span><span>linkedin.com/in/chooh</span></a>
+        <p>Have a project in mind, want to collaborate, or just want to say hi? I'd love to hear from you.</p>
+        <div class="clinks">
+          <a href="https://www.linkedin.com/in/chooh/" target="_blank" class="clink"><span>💼</span><span>linkedin.com/in/chooh</span></a>
         </div>
       </div>
-      <div class="contact-form">
-        <div class="form-group"><label>Your Name</label><input id="form-name" type="text" placeholder="Jane Doe"></div>
-        <div class="form-group"><label>Email Address</label><input id="form-email" type="email" placeholder="jane@example.com"></div>
-        <div class="form-group"><label>Message</label><textarea id="form-message" placeholder="Tell me about your idea..."></textarea></div>
-        <button class="btn-submit" onclick="sendEmail()">Send Message 🐸</button>
-        <div id="email-fallback" style="display:none; margin-top:1.5rem; background:var(--light); border-radius:16px; padding:1.25rem;">
-          <p style="font-weight:700; margin-bottom:0.75rem; color:var(--dark);">📬 If your mail client didn't open, copy the message below and paste it into your email app:</p>
-          <textarea id="fallback-text" readonly rows="8" style="width:100%; border:2px solid #E5E7EB; border-radius:10px; padding:0.75rem; font-family:inherit; font-size:0.85rem; resize:none; background:#fff;"></textarea>
-          <button id="copy-btn" onclick="copyFallback()" style="margin-top:0.75rem; background:linear-gradient(135deg,var(--green),var(--blue)); color:#fff; border:none; padding:0.7rem 1.5rem; border-radius:50px; font-weight:700; font-size:0.9rem; cursor:pointer;">Copy to Clipboard 📋</button>
+      <div class="cform">
+        <div class="fg"><label>Your Name</label><input id="fn" type="text" placeholder="Jane Doe"></div>
+        <div class="fg"><label>Email Address</label><input id="fe" type="email" placeholder="jane@example.com"></div>
+        <div class="fg"><label>Message</label><textarea id="fm" placeholder="Tell me about your idea..."></textarea></div>
+        <button class="btn-send" onclick="sendEmail()">Send Message 🐸</button>
+        <div class="fallback-box" id="fb">
+          <p>📬 Mail client didn't open? Copy and paste below into your email app:</p>
+          <textarea id="ft" readonly rows="7"></textarea>
+          <button class="btn-copy" id="bc" onclick="copyMsg()">Copy to Clipboard 📋</button>
         </div>
       </div>
     </div>
@@ -463,43 +448,40 @@
 </section>
 
 <footer>
-  <p>Made with 💚 by <span>Hwan-Yi Choo</span> · Froggy Fun Factory · © 2026</p>
+  <p>Made with 💚 by <span>Hwan-Yi Choo</span> · Froggy Fun Factory · Making onboarding fun · © 2026</p>
 </footer>
 
 <script>
-function filterCards(label, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+function filter(label, btn) {
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('#resources-grid .resource-card').forEach(card => {
-    const labels = card.dataset.labels || '';
-    card.classList.toggle('hidden', label !== 'all' && !labels.includes(label));
+  document.querySelectorAll('#rg .res-card').forEach(c => {
+    const t = c.dataset.tags || '';
+    c.classList.toggle('hidden', label !== 'all' && !t.split(' ').includes(label));
   });
 }
-
 function sendEmail() {
-  const name = document.getElementById('form-name').value.trim();
-  const email = document.getElementById('form-email').value.trim();
-  const message = document.getElementById('form-message').value.trim();
-  if (!name || !email || !message) { alert('Please fill in all fields before sending! 🐸'); return; }
-  const subject = encodeURIComponent('Portfolio enquiry from ' + name);
-  const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-  window.open('mailto:hwanyi.choo@gmail.com?subject=' + subject + '&body=' + body, '_self');
+  const n = document.getElementById('fn').value.trim();
+  const e = document.getElementById('fe').value.trim();
+  const m = document.getElementById('fm').value.trim();
+  if (!n || !e || !m) { alert('Please fill in all fields 🐸'); return; }
+  const sub = encodeURIComponent('Portfolio enquiry from ' + n);
+  const body = encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\n\nMessage:\n' + m);
+  window.open('mailto:hwanyi.choo@gmail.com?subject=' + sub + '&body=' + body, '_self');
   setTimeout(() => {
-    const fallback = document.getElementById('email-fallback');
-    const plain = 'To: hwanyi.choo@gmail.com\nSubject: Portfolio enquiry from ' + name + '\n\nName: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
-    document.getElementById('fallback-text').value = plain;
-    fallback.style.display = 'block';
-    fallback.scrollIntoView({ behavior: 'smooth' });
+    const fb = document.getElementById('fb');
+    document.getElementById('ft').value = 'To: hwanyi.choo@gmail.com\nSubject: Portfolio enquiry from ' + n + '\n\nName: ' + n + '\nEmail: ' + e + '\n\nMessage:\n' + m;
+    fb.style.display = 'block';
+    fb.scrollIntoView({ behavior: 'smooth' });
   }, 1000);
 }
-
-function copyFallback() {
-  const txt = document.getElementById('fallback-text');
-  txt.select();
-  navigator.clipboard.writeText(txt.value).then(() => {
-    const btn = document.getElementById('copy-btn');
-    btn.textContent = 'Copied! ✅';
-    setTimeout(() => btn.textContent = 'Copy to Clipboard 📋', 2500);
+function copyMsg() {
+  const t = document.getElementById('ft');
+  t.select();
+  navigator.clipboard.writeText(t.value).then(() => {
+    const b = document.getElementById('bc');
+    b.textContent = 'Copied! ✅';
+    setTimeout(() => b.textContent = 'Copy to Clipboard 📋', 2500);
   });
 }
 </script>
